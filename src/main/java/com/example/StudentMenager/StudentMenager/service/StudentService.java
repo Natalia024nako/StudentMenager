@@ -45,6 +45,9 @@ public class StudentService {
                         c.getCredits()
                 );
 
-
-    }).toList();
-}}
+                }).toList();
+    }
+    public List<Student> getAllStudents(){
+        return studentRepository.findAll();
+    }
+}

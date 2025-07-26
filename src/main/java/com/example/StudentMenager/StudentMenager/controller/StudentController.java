@@ -3,6 +3,7 @@ package com.example.StudentMenager.StudentMenager.controller;
 import com.example.StudentMenager.StudentMenager.dto.request.StudentRequsetDTO;
 import com.example.StudentMenager.StudentMenager.dto.response.CourseResponseDTO;
 import com.example.StudentMenager.StudentMenager.dto.response.StudentResponseDTO;
+import com.example.StudentMenager.StudentMenager.entity.Student;
 import com.example.StudentMenager.StudentMenager.service.StudentService;
 import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
@@ -25,6 +26,12 @@ public class StudentController {
     @GetMapping("/{id}/courses")
     public List<CourseResponseDTO> getCourses(@PathVariable Long id){
         return studentService.getCoursesForStudent(id);
+    }
+
+    @GetMapping
+
+    public List<Student> getAllStudents(){
+        return studentService.getAllStudents();
     }
 
 }

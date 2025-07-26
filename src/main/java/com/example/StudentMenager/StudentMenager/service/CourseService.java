@@ -7,6 +7,8 @@ import com.example.StudentMenager.StudentMenager.repositories.CourseRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class CourseService {
     private final CourseRepository courseRepository;
@@ -23,5 +25,13 @@ public class CourseService {
         Course course = new Course(null, dto.getTitle(), dto.getDescription(), dto.getCerdits());
         Course saved = courseRepository.save(course);
         return new CourseResponseDTO(saved.getId(), saved.getTitle(), saved.getDescription(), saved.getCredits());
+    }
+
+    public List<Course> getCourseWithMinCredits(int min){
+        return courseRepository.findByCreditsGreaterThan(min);
+    }
+
+    public List<Course> getAllCourses(){
+        return courseRepository.findAll();
     }
 }

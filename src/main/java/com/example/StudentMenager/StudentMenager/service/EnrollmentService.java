@@ -56,4 +56,17 @@ public class EnrollmentService {
                     );
                 }).toList();
     }
+
+    public boolean isStudentEnrolled(Long studentId, Long courseId){
+        return enrollmentRepository.existsByStudentIdAndCourseId(studentId, courseId);
+    }
+
+    @Transactional
+    public void deleteEnrollment(Long id ){
+        enrollmentRepository.deleteById(id);
+    }
+
+    public List<Enrollment> getAllEnrollments(){
+        return enrollmentRepository.findAll();
+    }
 }

@@ -2,7 +2,9 @@ package com.example.StudentMenager.StudentMenager.controller;
 
 import com.example.StudentMenager.StudentMenager.dto.request.EnrollmentRequestDTO;
 import com.example.StudentMenager.StudentMenager.dto.response.StudentResponseDTO;
+import com.example.StudentMenager.StudentMenager.entity.Enrollment;
 import com.example.StudentMenager.StudentMenager.service.EnrollmentService;
+import jakarta.transaction.Transactional;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -27,4 +29,14 @@ public class EnrollmentController {
         return enrollmentService.getStudentsForCourse(id);
     }
 
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteEnrollment(@PathVariable Long id){
+        enrollmentService.deleteEnrollment(id);
+        return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping
+    public List<Enrollment> getAllEnrollments(){
+        return enrollmentService.getAllEnrollments();
+    }
 }
